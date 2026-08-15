@@ -71,6 +71,14 @@
     creates: /usr/local/x-ui
   notify: Restart haproxy service
 
+- name: Deploy x-ui unit
+  ansible.builtin.template:
+    src: x-ui.service.j2
+    dest: /etc/systemd/system/x-ui.service
+    mode: "0644"
+  notify:
+    - Restart x-ui service
+
 - name: Clean up install script
   ansible.builtin.file:
     path: /tmp/install_x_ui.sh
